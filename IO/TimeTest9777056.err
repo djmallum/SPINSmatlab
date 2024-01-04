@@ -1,0 +1,6 @@
+Picked up JAVA_TOOL_OPTIONS: -Xmx2g
+{Undefined variable 'partialResults'.
+
+Error in spins_readerTEST2 (line 45)
+result = cat(3, partialResults{:});
+} 

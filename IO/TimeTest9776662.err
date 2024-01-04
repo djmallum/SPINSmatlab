@@ -1,0 +1,5 @@
+Picked up JAVA_TOOL_OPTIONS: -Xmx2g
+slurmstepd: error: Detected 1 oom_kill event in StepId=9776662.0. Some of the step tasks have been OOM Killed.
+srun: error: gra1136: task 0: Out Of Memory
+srun: Terminating StepId=9776662.0
+slurmstepd: error: Detected 1 oom_kill event in StepId=9776662.batch. Some of the step tasks have been OOM Killed.

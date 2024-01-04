@@ -1,0 +1,82 @@
+Opening log file:  /tmp/java.log.29430
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2023 The MathWorks, Inc.
+             R2023a Update 3 (9.14.0.2286388) 64-bit (glnxa64)
+                                May 25, 2023
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+Starting parallel pool (parpool) using the 'Processes' profile ...
+Connected to parallel pool with 4 workers.
+
+ans = 
+
+ ProcessPool with properties: 
+
+            Connected: true
+           NumWorkers: 4
+                 Busy: false
+              Cluster: Processes (Local Cluster)
+        AttachedFiles: {}
+    AutoAddClientPath: true
+            FileStore: [1x1 parallel.FileStore]
+           ValueStore: [1x1 parallel.ValueStore]
+          IdleTimeout: 30 minutes (30 minutes remaining)
+          SpmdEnabled: true
+
+
+poolsize =
+
+     4
+
+Elapsed time is 66.025826 seconds.
+
+poolsize =
+
+     4
+
+Elapsed time is 94.510195 seconds.
+
+poolsize =
+
+     4
+
+Elapsed time is 122.267397 seconds.
+
+poolsize =
+
+     4
+
+Elapsed time is 150.550450 seconds.
+
+poolsize =
+
+     4
+
+Elapsed time is 178.472663 seconds.
+
+poolsize =
+
+     4
+
+Elapsed time is 205.792650 seconds.
+
+poolsize =
+
+     4
+
+Elapsed time is 233.351962 seconds.
+
+poolsize =
+
+     4
+
+Elapsed time is 259.986989 seconds.
+
+poolsize =
+
+     4
+

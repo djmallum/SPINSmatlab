@@ -1,0 +1,9 @@
+Picked up JAVA_TOOL_OPTIONS: -Xmx2g
+{Error using parpool
+Found an interactive session. You cannot have multiple interactive sessions
+open simultaneously. To terminate the existing session, use <a
+href="matlab:delete(gcp('nocreate'))">delete(gcp('nocreate'))</a>.
+
+Error in spins_readerTEST2 (line 20)
+parpool
+} 

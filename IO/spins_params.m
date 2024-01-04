@@ -1,4 +1,4 @@
-function params = spins_params()
+function params = spins_params(cdir)
 %  SPINS_PARAMS   Parses the spins.conf file into a structure.
 %
 %  Usage:
@@ -12,8 +12,12 @@ function params = spins_params()
 %
 %  David Deepwell, 2015
 
+if nargin == 0
+    cdir=pwd;
+end
+
 try
-    fileID = fopen('spins.conf');
+    fileID = fopen([cdir '/spins.conf']);
     tline = fgetl(fileID);
     while ischar(tline)
         if ~isempty(tline) && ~strcmp(tline(1),'#')

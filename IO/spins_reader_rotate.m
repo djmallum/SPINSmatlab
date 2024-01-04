@@ -119,17 +119,14 @@ m = memmapfile(fname, 'Offset',0, ...
 
 % Extract the data and clear the memmap
 ar = m.Data.x(ranges{1},ranges{2},ranges{3}); 
-%m = m.Data;
 
 clear m
 
+ar = squeeze(ipermute(ar,
+
 % Permute, check endianness, and return
-if (prod(cellfun(@numel,ranges))*8 < 10*1024^3)
-    ar = squeeze(ipermute(ar,[2,3,1]));
-else
-    disp('Data is ordered as [Y,Z,X]')
-    
-end
+
+ar = squeeze(ipermute(ar,[2,3,1]));
 
 [~,~,endian] = computer();
 if (~isequal(endian,'L'))

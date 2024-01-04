@@ -1,0 +1,6 @@
+Picked up JAVA_TOOL_OPTIONS: -Xmx2g
+{Error using spins_readerTEST2
+Error: Unable to classify the variable 'result' in the body of the parfor-loop.
+For more information, see Parallel for Loops in MATLAB, "Solve Variable
+Classification Issues in parfor-Loops".
+} 

@@ -1,4 +1,4 @@
-function ar = spins_reader(varname, varargin);
+function ar = spins_readerRotate(varname, varargin);
 % SPINS data reader with slab support and a user defined name
 % Opens and reads a slab of SPINS data, optionally
 % loading only a portion of the total array. This
@@ -118,17 +118,16 @@ m = memmapfile(fname, 'Offset',0, ...
    'Writable',false);
 
 % Extract the data and clear the memmap
-ar = m.Data.x(ranges{1},ranges{2},ranges{3}); 
-%m = m.Data;
+ar = m.Data.x(flip(ranges{1}),ranges{2},flip(ranges{3})); 
 
 clear m
 
+
 % Permute, check endianness, and return
-if (prod(cellfun(@numel,ranges))*8 < 10*1024^3)
+if (prod(cellfun(@numel,ranges))*8 < 20*1024^3)
     ar = squeeze(ipermute(ar,[2,3,1]));
 else
-    disp('Data is ordered as [Y,Z,X]')
-    
+    disp('Data is ordered as [Y,Z,X] due to file size')
 end
 
 [~,~,endian] = computer();

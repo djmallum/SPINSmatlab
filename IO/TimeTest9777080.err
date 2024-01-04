@@ -1,0 +1,6 @@
+Picked up JAVA_TOOL_OPTIONS: -Xmx2g
+{Unrecognized function or variable 'fileSizeBytes'.
+
+Error in spins_readerTEST2 (line 27)
+chunkSizeBytes = ceil(fileSizeBytes / (poolsize * 8)); % Each double element is 8 bytes
+} 

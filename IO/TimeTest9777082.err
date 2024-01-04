@@ -1,0 +1,4 @@
+Picked up JAVA_TOOL_OPTIONS: -Xmx2g
+srun: Job step aborted: Waiting up to 62 seconds for job step to finish.
+slurmstepd: error: *** JOB 9777082 ON gra1136 CANCELLED AT 2023-07-30T00:52:38 DUE TO TIME LIMIT ***
+slurmstepd: error: *** STEP 9777082.0 ON gra1136 CANCELLED AT 2023-07-30T00:52:38 DUE TO TIME LIMIT ***

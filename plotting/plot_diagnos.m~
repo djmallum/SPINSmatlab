@@ -1,4 +1,4 @@
-function all_diagnos = plot_diagnos(make_plots, do_filter, current_dir)
+function all_diagnos = plot_diagnos(make_plots, do_filter, )
 %  PLOT_DIAGNOS  Plot diagnostics (timing, energy budget, etc) of a SPINS case
 %
 %  Info: Diagnostics are in one of two diagnostic files
@@ -34,17 +34,14 @@ function all_diagnos = plot_diagnos(make_plots, do_filter, current_dir)
 if nargin == 0
     make_plots = true;
     do_filter = false;
-    current_dir=pwd;
+    cdir=pwd;
 elseif nargin == 1
     do_filter = false;
-    current_dir=pwd;
-elseif nargin == 2
-    current_dir=pwd;    
 end
 
 %%%%%%%%%%% Read Data %%%%%%%%%%%%%%%
 % read diagnostic file
-diag_file_name = [current_dir '/diagnostics'];
+diag_file_name = 'diagnostics';
 if exist([diag_file_name,'.mat'], 'file') == 2
     % load cleaned data, if it exists
     diag_file = [diag_file_name,'.mat'];
@@ -227,7 +224,7 @@ if isfield(diagnos, 'Max_density')
     rho_max_diff = diagnos.Max_density - rho_init;
     fprintf('\n')
     disp('---- Max density deviation ----')
-    fprintf('Max {Max rho / Max rho(0)}- 1 =  %4.2g\n',max(rho_var));
+    fprintf('Max {Max rho / Max rho(0)} - 1 =  %4.2g\n',max(rho_var));
     fprintf('Max {Max rho - Max rho(0)}     =  %4.2g\n',max(rho_max_diff));
     % place into output structure
     all_diagnos.diagnos.rho_var = rho_var;

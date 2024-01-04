@@ -1,4 +1,4 @@
-function ar = spins_reader(varname, varargin);
+function ar = spins_reader_diag(varname, varargin)
 % SPINS data reader with slab support and a user defined name
 % Opens and reads a slab of SPINS data, optionally
 % loading only a portion of the total array. This
@@ -73,6 +73,9 @@ elseif ~is_grid && nargin==5
     xrange = varargin{2};
     yrange = varargin{3};
     zrange = varargin{4};
+elseif ~is_grid && strcmp(varargin{2},'diag')
+    % If looking diagonal slice in vertical
+    % Do nothing?
 elseif is_grid && nargin==3 && Ny==1
     % if 2D ranges given and varname is a grid
     xrange = varargin{1};
@@ -118,20 +121,17 @@ m = memmapfile(fname, 'Offset',0, ...
    'Writable',false);
 
 % Extract the data and clear the memmap
-ar = m.Data.x(ranges{1},ranges{2},ranges{3}); 
-%m = m.Data;
-
-clear m
+if strcmp(varargin{2},'diag')
+    for ii=1:Nz
+        ar(:,ii) = diag(squeeze(m.Data.x(:,ii,:)));
+    end
+else
+ar = m.Data.x(ranges{1},ranges{2},ranges{3}); clear m
 
 % Permute, check endianness, and return
-if (prod(cellfun(@numel,ranges))*8 < 10*1024^3)
-    ar = squeeze(ipermute(ar,[2,3,1]));
-else
-    disp('Data is ordered as [Y,Z,X]')
-    
-end
-
+ar = squeeze(ipermute(ar,[2,3,1]));
 [~,~,endian] = computer();
 if (~isequal(endian,'L'))
    ar = swapbytes(ar);
+end
 end

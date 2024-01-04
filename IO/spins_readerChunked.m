@@ -111,6 +111,44 @@ if is_grid
 else
     fname = sprintf('%s.%d',varname,seq);
 end
+% memmap the file for reading
+m = memmapfile(fname, 'Offset', 0, ...
+    'Format', {'double' [Ny, Nz, Nx] 'x'}, ...
+    'Writable', false);
+
+% Get the file size using dir function
+fileInfo = dir(fname);
+fileSizeBytes = fileInfo.bytes;
+
+% Determine the number of available workers
+poolobj = gcp('nocreate'); % If no pool, do not create a new one.
+if isempty(poolobj)
+    poolsize = 0;
+else
+    poolsize = poolobj.NumWorkers;
+end
+
+% Calculate the chunk size based on the number of workers
+chunkSizeBytes = ceil(fileSizeBytes / (poolsize * 8)); % Each double element is 8 bytes
+chunkSizeElements = chunkSizeBytes / 8; % Convert to the number of double elements
+
+% Preallocate the result array
+result = zeros(length(ranges{1}), length(ranges{2}), length(ranges{3}));
+
+% Parallelize the data extraction using parfor
+parfor iChunk = 1:poolsize
+    % Calculate the start and end indices for the current chunk
+    startIdx = (iChunk - 1) * chunkSizeElements + 1;
+    endIdx = min(iChunk * chunkSizeElements, fileSizeBytes / 8);
+    
+    % Calculate the corresponding subscripts for the current chunk
+    [iSub, jSub, kSub] = ind2sub([length(ranges{1}), length(ranges{2}), length(ranges{3})], startIdx:endIdx);
+    
+    % Extract the data for the current chunk and store it in the result array
+    result(iSub, jSub, kSub) = m.Data.x(ranges{1}(iSub), ranges{2}(jSub), ranges{3}(kSub));
+end
+
+% The extracted data is now stored in the 'result' variable
 
 % memmap the file for reading
 m = memmapfile(fname, 'Offset',0, ...
