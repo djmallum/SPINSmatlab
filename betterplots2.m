@@ -13,8 +13,8 @@ for ii=1:NumberOfChildren
             object.TickLabelInterpreter = 'latex';
         case 'axes'
             object.XLabel.Interpreter = 'latex';
-            object.XLabel.FontSize = 12;
-            object.YLabel.FontSize = 12;
+            object.XLabel.FontSize = 10;
+            object.YLabel.FontSize = 10;
             object.YLabel.Interpreter = 'latex';
             object.ZLabel.Interpreter = 'latex';
             object.TickLabelInterpreter = 'latex';
